@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura — Vibe Check & Red Flag Radar</title>
+<meta name="description" content="Check the vibe of a chat, or scan it for the patterns that don't show up at first glance.">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+<div class="bg-blobs"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+
+<div class="shell">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">🔮</div>
+      <div><div class="brand-name">Aura</div><div class="brand-tag">READ THE VIBE. CATCH THE STATIC.</div></div>
+    </div>
+    <button class="track-switch-btn" id="switchTrackBtn">↺ Switch track</button>
+  </div>
+
+  <div id="heroSection">
+    <div class="hero">
+      <div class="hero-eyebrow"><span class="dot"></span> pick your lens</div>
+      <h1>Same chat, two ways<br>to actually <span class="grad">get it.</span></h1>
+      <p>Check the vibe of a conversation, or scan it for the stuff that doesn't show up at first glance. One chat. Your call which lens you want.</p>
+    </div>
+
+    <div class="track-pick">
+      <div class="track-card vibe" id="cardVibe">
+        <div class="tc-icon">🌈</div>
+        <h3>Vibe Check</h3>
+        <div class="tc-tag">TRACK 1 · TONE ANALYSIS</div>
+        <p class="desc">What's the actual mood in this chat? Who's the soft one, who's been a bit much lately, who's just vibing.</p>
+        <ul class="tc-list">
+          <li>Mood breakdown per person (%)</li>
+          <li>Full chat log, tagged by mood</li>
+          <li>Stats with real graphs</li>
+          <li>Search messages by vibe</li>
+          <li>Downloadable report</li>
+        </ul>
+        <div class="tc-cta">Check the vibe →</div>
+      </div>
+
+      <div class="track-card radar" id="cardRadar">
+        <div class="tc-icon">🚩</div>
+        <h3>Red Flag Radar</h3>
+        <div class="tc-tag">TRACK 2 · SAFETY ANALYSIS</div>
+        <p class="desc">Even a "nice" chat can be hiding scams, pressure tactics, or someone who isn't who they say they are.</p>
+        <ul class="tc-list">
+          <li>Scam, phishing &amp; academic-fraud detector</li>
+          <li>Manipulation &amp; impersonation patterns</li>
+          <li>Trust score per contact</li>
+          <li>Vibe-shift alerts over time</li>
+          <li>Link safety + personalized tips</li>
+        </ul>
+        <div class="tc-cta">Scan for flags →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-panel" id="uploadStep">
+    <div class="panel-head">
+      <div class="panel-num">1</div>
+      <div><div class="panel-title" id="uploadStepTitle">Load a chat</div><div class="panel-sub">WhatsApp export, paste text, or just talk to it</div></div>
+    </div>
+
+    <div class="upload-tabs">
+      <button class="upload-tab active" id="tabFileBtn">📂 Upload file</button>
+      <button class="upload-tab" id="tabPasteBtn">📋 Paste text</button>
+      <button class="upload-tab" id="tabVoiceBtn">🎤 Voice check</button>
+    </div>
+
+    <div id="uploadFilePanel">
+      <div class="dropzone" id="dropzone">
+        <div class="dropzone-icon">📂</div>
+        <strong>Click to choose your chat export</strong>
+        <p>WhatsApp → Chat → ⋮ More → Export Chat → Without Media</p>
+        <input type="file" id="fileInput" accept=".txt">
+      </div>
+      <div id="fileChosenName" style="text-align:center; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); margin-top:9px;"></div>
+    </div>
+
+    <div id="uploadPastePanel" style="display:none;">
+      <textarea id="chattext" placeholder="19/04/2026, 09:00 am - Arun: hey good morning!"></textarea>
+    </div>
+
+    <div id="uploadVoicePanel" style="display:none;" class="voice-panel">
+      <div class="voice-row">
+        <input type="text" id="voiceSender" placeholder="Who's speaking? e.g. Unknown Number" value="Unknown Number">
+      </div>
+      <button class="mic-btn" id="micBtn">🎙️</button>
+      <div class="voice-hint" id="voiceHint">Tap the mic, say the message out loud, tap again to stop</div>
+      <div class="voice-log" id="voiceLog" style="display:none;"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" id="analyzeBtn">Analyze Chat</button>
+      <button class="btn-ghost" id="demoBtn">Try a sample chat</button>
+    </div>
+    <div id="statusMsg" class="status-msg"></div>
+  </div>
+
+  <div class="glass-panel signal-wrap" id="signalWrap">
+    <div class="signal-label"><span>SIGNAL TRACE</span><span id="signalStatus">—</span></div>
+    <svg id="signalSvg" viewBox="0 0 880 96" preserveAspectRatio="none"></svg>
+  </div>
+
+  <div id="dashboard">
+    <div class="dash-header">
+      <div class="dash-title" id="dashTitle">Your results</div>
+      <button class="download-btn" id="downloadBtn">⬇ Download report</button>
+    </div>
+    <div class="summary-row" id="summaryRow"></div>
+    <div class="tabbar" id="tabbar"></div>
+    <div id="panels"></div>
+  </div>
+
+  <footer>Aura is a concept project · pattern-based detection, not a verdict on real people · built for awareness, not surveillance</footer>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
